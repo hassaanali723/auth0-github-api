@@ -17,8 +17,8 @@ class App extends Component {
   }
 
   static defaultProps = {
-    clientID: '',
-    domain: ''
+    clientID: '1OCNZfc8mHfYEg7UmdOGHHE75heIpLMf',
+    domain: 'dev-cpqq0sbz.us.auth0.com'
   }
 
   componentWillMount(){
