@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
-
+import {Navbar, Nav, NavItem, Container} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 class Header extends Component {
+
+    onLogin(){
+        this.props.onLogin();
+    }
     constructor(props) {
         super(props);
         this.state = {  }
@@ -10,15 +14,15 @@ class Header extends Component {
         return ( 
         <div>
           <Navbar>
-              <Navbar.Header>
+              <Container>
                   <Navbar.Brand>
                       Github Searcher
                   </Navbar.Brand>
 
-              </Navbar.Header>
+              </Container>
              <Nav>
                  <NavItem>
-                    Login 
+                 <Nav.Link onClick={this.onLogin.bind(this)} href="#">Home</Nav.Link>
                  </NavItem>
              </Nav>
           </Navbar>
