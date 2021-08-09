@@ -24,16 +24,26 @@ class App extends Component {
   componentWillMount(){
     this.lock = new Auth0Lock(this.props.clientID,this.props.domain);
     this.lock.on('authenticated', (authResult) => {
-      //console.log(authResult);
-    this.lock.getProfile(authResult.idToken,(error,profile)=>{
+      console.log(authResult);
+      this.lock.getProfile(authResult.accessToken,(error,profile) => {
       if(error){
         console.log(error);
         return;
       }
 
-      this.setProfile(authResult.idToken, profile);
+     this.setProfile(authResult.accessToken, profile);
       console.log(profile);
     });
+    });
+  }
+
+  setProfile(idToken,profile){
+    localStorage.setItem('idToken',idToken);
+    localStorage.setItem('profile',JSON.stringify(profile));
+
+    this.setState({
+      idToken: localStorage.getItem('idToken'),
+      profile: JSON.parse(localStorage.getItem('profile'))
     });
   }
 
@@ -43,7 +53,7 @@ class App extends Component {
 
   render() { 
     return ( 
-      <div className="App">
+      <div className="App"> 
         
       <Header 
       onLogin={this.showLock.bind(this)} />
