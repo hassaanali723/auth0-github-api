@@ -6,6 +6,10 @@ class Header extends Component {
     onLogin(){
         this.props.onLogin();
     }
+
+    onLogout(){
+        this.props.onLogout();
+    }
     constructor(props) {
         super(props);
         this.state = {  }
@@ -22,7 +26,7 @@ class Header extends Component {
               </Container>
              <Nav>
                  <NavItem>
-                 <Nav.Link onClick={this.onLogin.bind(this)} href="#">Home</Nav.Link>
+                 <Nav.Link onClick={this.onLogin.bind(this)} href="#">Login</Nav.Link>
                  </NavItem>
              </Nav>
           </Navbar>

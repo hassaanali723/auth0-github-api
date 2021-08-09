@@ -35,6 +35,8 @@ class App extends Component {
       console.log(profile);
     });
     });
+
+    this.getProfile();
   }
 
   setProfile(idToken,profile){
@@ -47,18 +49,51 @@ class App extends Component {
     });
   }
 
+  getProfile(){
+    if(localStorage.getItem != null){
+      this.setState({
+        idToken: localStorage.getItem('idToken'),
+        profile: JSON.parse(localStorage.getItem('profile'))
+      }, () => {
+        console.log(this.state);
+
+      });
+    }
+  }
+
   showLock(){
     this.lock.show();
   }
 
+  logout(){
+    this.setState({
+      idTokens: '',
+      profile: ''
+
+    }, () => {
+      localStorage.removeItem('idToken');
+      localStorage.removeItem('profile');
+    });
+  }
+
   render() { 
+    let gitty;
+    if(this.state.idToken){
+      gitty =  <Github />
+    }else{
+      gitty = 'Click on Login to view the github Searcher';
+    }
+
     return ( 
       <div className="App"> 
         
       <Header 
+      idToken={this.state.idTokens}
+      profile={this.state.profile}
+      onLogin={this.logout.bind(this)}
       onLogin={this.showLock.bind(this)} />
-      <Github />
-
+      {gitty}
+      
     </div>
      );
   }
