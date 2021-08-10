@@ -15,18 +15,27 @@ class Header extends Component {
         this.state = {  }
     }
     render() { 
+
+        let page;
+        if(this.props.idToken){
+            page = <Nav.Link onClick={this.onLogout.bind(this)} href="#">Logout</Nav.Link>
+        }
+        else {
+            page = <Nav.Link onClick={this.onLogin.bind(this)} href="#">Login</Nav.Link>
+        }
         return ( 
+            
         <div>
           <Navbar>
               <Container>
                   <Navbar.Brand>
                       Github Searcher
                   </Navbar.Brand>
-
+            
               </Container>
              <Nav>
                  <NavItem>
-                 <Nav.Link onClick={this.onLogin.bind(this)} href="#">Login</Nav.Link>
+                   {page}
                  </NavItem>
              </Nav>
           </Navbar>

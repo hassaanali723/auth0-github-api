@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      idTokens: '',
+      idToken: '',
       profile: {}
      };
   }
@@ -67,7 +67,7 @@ class App extends Component {
 
   logout(){
     this.setState({
-      idTokens: '',
+      idToken: '',
       profile: ''
 
     }, () => {
@@ -88,9 +88,9 @@ class App extends Component {
       <div className="App"> 
         
       <Header 
-      idToken={this.state.idTokens}
+      idToken={this.state.idToken}
       profile={this.state.profile}
-      onLogin={this.logout.bind(this)}
+      onLogout={this.logout.bind(this)}
       onLogin={this.showLock.bind(this)} />
       {gitty}
       
